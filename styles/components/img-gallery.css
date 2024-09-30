@@ -1,0 +1,33 @@
+.list {
+    columns: 100px;
+}
+
+.select-img-container{
+    display: grid;
+    place-content: center;
+    width: 100%;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.select-img-container img{
+    border-radius: 1.25em;
+}
+
+.filter-container{
+    margin: 0.5em;  
+}
+
+.searchByKeywords{
+    background-color: var(--clrSecondary);
+    border-radius: 1.25em;
+    padding: 0.5em;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.7em;
+}
+
+.searchByKeywords span{
+    margin: 0.1em;
+}

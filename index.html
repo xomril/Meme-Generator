@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <title>Meme Generator</title>
+</head>
+
+<body class="main-layout" onload="onInit()" onkeydown="handleCanvasKeyPress(event)">
+
+    <header class="main-header main-layout full">
+        <nav class="navbar">
+            <div class="logo "><span>M</span>eme <span>G</span>enera<span>t</span>or</div>
+            <div class="main-nav">
+                <ul class="desktop-list clean-list grid flow-column">
+                    <li class="menu-gallery">
+                        <a onclick="onMenuItemClick('menu-gallery')" href="#" class="menu-item active">Gallery</a>
+                    </li>
+                    <li class="menu-meme-editor">
+                        <a onclick="onMenuItemClick('menu-meme-editor')" href="#" class="menu-item ">Meme Editor</a>
+                    </li>
+                    <li class="menu-my-memes">
+                        <a onclick="onMenuItemClick('menu-my-memes')" href="#" class="menu-item">My Memes</a>
+                    </li>
+                    <li class="menu-about">
+                        <a onclick="onMenuItemClick('menu-about')" href="#" class="menu-item">About</a>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </nav>
+    </header>
+    <main class="main-container">
+
+
+        <section class="image-gallery ">
+            <h2>Select an image...</h2>
+            <div>
+                <input type="file" class="file-input btn hidden" name="image" id="fileUpload"
+                    onchange="onImgInput(event)" />
+                <button class="btn" onclick="document.querySelector('#fileUpload').click()">Choose Image</button>
+
+
+            </div>
+            <div class="filter-container">
+                <label for="filter">filter:</label>
+                <input list="filters" name="filter" id="filter" onchange="onFilter(this.value)">
+            </div>
+            <datalist id="filters" class="filter">
+                <option value="funny">
+                <option value="animal">
+                <option value="bad">
+                <option value="politic">
+                <option value="awkward">
+                <option value="happy">
+                <option value="cute">
+                <option value="baby">
+            </datalist>
+
+            <section class="searchByKeywords">
+                <div></div>
+            </section>
+
+            <section class="list select-img-container">
+
+            </section>
+        </section>
+
+        <section class="meme-editor hidden">
+           
+            <div class="share-container hidden"></div>
+            <section class="editor-layout">
+                <div class="canvas-container relative">
+                    <canvas onclick="selectItem(event)">
+                    </canvas>
+                </div>
+
+                <div class="editor-layout-panel  align-center">
+                    <input class="line-input" type="text" oninput="onInput(this)" onkeydown="handleKeyPress(event)"
+                        onblur="outOfFocus()" placeholder="Insert text here..."> </input>
+                    <div class=" top-btm panel">
+                        <button class="btn" onclick="onSwitchLine()">
+                            <i class="fa-solid fa-arrow-down-up-across-line"></i>
+                        </button>
+                        <button class="btn" onclick="onAddLine()">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                        <button class="btn" onclick="onDeleteLine()">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+
+                    </div>
+                    <div class="txt-editor rounded">
+
+                        <!-- First row -->
+                        <div class="row-1">
+                            <button class="btn" onclick="onIncreaseFont()"> <i class="fa-solid fa-a"></i> <i
+                                    class="fa-solid fa-plus"></i>
+                            </button>
+                            <button class="btn" onclick="onDecreaseFont()"> <i class="fa-solid fa-a"></i> <i
+                                    class="fa-solid fa-minus"></i>
+                            </button>
+                            <button class="btn" onclick="onLeftAlignment()">
+                                <i class="fa-solid fa-align-left"></i>
+                            </button>
+                            <button class="btn" onclick="onCenterAlignment()">
+                                <i class="fa-solid fa-align-center"></i>
+                            </button>
+                            <button class="btn" onclick="onRightAlignment()">
+                                <i class="fa-solid fa-align-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Second row -->
+                        <div class="row-2">
+                            <div class="edit-cell-wide">
+                                <select class="font-type rounded" onchange="onFontSelected()">
+                                    <option value="impact">impact </option>
+                                    <option value="eurofurence">eurofurence </option>
+                                    <option value="lato">lato </option>
+                                </select>
+                            </div>
+
+                            <button class="btn" class="color-picker-btn" style="position:relative"
+                                onclick="onSetFillColor()">
+                                <input type="color" name="color-picker-fill" class="color-picker brush"
+                                    value="#FFFFFF" />
+                                <i class="fa-solid fa-brush"></i>
+                            </button>
+
+                            <button class="btn" class="color-picker-btn" style="position:relative"
+                                onclick="onSetStrokeColor()">
+                                <input type="color" name="color-picker-stroke" class="color-picker stroke"
+                                    value="#000000" />
+                                <i class="fa-solid fa-s"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="stickers-panel">
+                        <p>
+                            <span onclick="onAddSticker(this.innerText)">😍</span>
+                            <span onclick="onAddSticker(this.innerText)">😁</span>
+                            <span onclick="onAddSticker(this.innerText)">😎</span>
+                            <span onclick="onAddSticker(this.innerText)">🤣</span>
+                            <span onclick="onAddSticker(this.innerText)">😜</span>
+                            <span onclick="onAddSticker(this.innerText)">😱</span>
+
+                        </p>
+                        <p>
+                            <span onclick="onAddSticker(this.innerText)">👅</span>
+                            <span onclick="onAddSticker(this.innerText)">💋</span>
+                            <span onclick="onAddSticker(this.innerText)">👀</span>
+                            <span onclick="onAddSticker(this.innerText)">☝</span>
+                            <span onclick="onAddSticker(this.innerText)">👍</span>
+                            <span onclick="onAddSticker(this.innerText)">💭</span>
+
+                        </p>
+
+                    </div>
+                    <div class="buttom-btm panel">
+                        <button class="btn" onclick="onSave()">Save</button>
+                        <button class="btn" onclick="onUploadImg(event)">Upload</button>
+                        <button class="btn disabled share-button"
+                            onclick="document.querySelector('.btn-facebook').click()">Share</button>
+                        <button class="btn" onclick="downloadCanvas(this)">Download</button>
+                        
+                    </div>
+                    <div class="hidden">
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="btn" type="submit">Upload to Cloudinary</button>
+                        </form>
+                    </div>
+                </div>
+
+                </div>
+            </section>
+        </section>
+
+        <section class="my-mems ">
+            <div class="list select-img-container">
+
+            </div>
+
+        </section>
+
+        <section class="about hidden">
+
+            <h2>About Ultimate Meme Generator</h2>
+            <p>
+                Welcome to the Ultimate Meme Generator—your one-stop shop for creating hilarious, relatable, and
+                viral-worthy memes! Whether you're a meme enthusiast, content creator, or just someone who loves
+                spreading laughs, you've come to the right place.
+            </p>
+
+            <h2>Why We’re the Ultimate Meme Tool</h2>
+
+            <p>At the Ultimate Meme Generator, we believe that creativity shouldn’t be limited by complicated software.
+                We’ve designed a simple, intuitive, and powerful platform that puts meme-making at your fingertips. Our
+                tool offers a rich variety of features, so whether you're making classic image macros or customizing
+                your own format, you'll find everything you need right here.</p>
+
+            <h2>Key Features:</h2>
+
+            <ul>
+                <li>
+                    Easy-to-Use Editor: Our drag-and-drop editor makes it effortless to add text, adjust font sizes, and
+                    move elements around.
+                </li>
+                <li>
+                    Instant Downloads: No sign-up required! Generate your meme and download it instantly in just a few
+                    clicks.
+                </li>
+                <li>
+                    Customizable Everything: Edit fonts, colors, sizes, and even add stickers for a personalized touch.
+                </li>
+                <li>
+                    Mobile-Friendly: Whether you’re on a desktop or mobile, our platform adapts to make meme creation
+                    smooth and easy on any device.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+
+    <footer class=" full">
+        <nav class="navbar">
+            <div class="main-nav">
+                <ul class="mobile clean-list grid flow-column">
+                    <li class="menu-gallery">
+                        <a onclick="onMenuItemClick('menu-gallery')" href="#" class="menu-item active">
+                            <i class="fa-regular fa-image"></i>
+                        </a>
+                    </li>
+                    <li class="menu-meme-editor">
+                        <a onclick="onMenuItemClick('menu-meme-editor')" href="#" class="menu-item ">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                    </li>
+                    <li class="menu-my-memes">
+                        <a onclick="onMenuItemClick('menu-my-memes')" href="#" class="menu-item">
+
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                    </li>
+                    <li class="menu-about">
+                        <a onclick="onMenuItemClick('menu-about')" href="#" class="menu-item">
+                            <i class="fa-solid fa-info"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+    </footer>
+
+
+
+
+
+
+    <script src="js/utils.js"></script>
+    <script src="js/services/upload.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/controlers/gallery.controller.js"></script>
+    <script src="js/controlers/meme.controler.js"></script>
+</body>
+
+
+</html>

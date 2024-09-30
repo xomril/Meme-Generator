@@ -1,0 +1,95 @@
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--clrPrimary2);
+    box-shadow: inset 0px -6px 0 var(--clrPrimary3);
+    display: block;
+}
+
+.main-header .main-nav a {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 110px;
+    min-height: 130px;
+
+    transition: box-shadow 0.2s;
+}
+
+.main-header .main-nav a:hover {
+    box-shadow: inset 0px -6px 0 var(--clrSecondary);
+}
+
+.main-header .main-nav a.active {
+    color: var(--clrPrimary4);
+}
+
+footer a.active {
+    color: var(--clrPrimary4);
+}
+
+.main-header .journal .dropdown-content {
+    position: absolute;
+    background-color: var(--clrPrimary2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s;
+    pointer-events: none;
+    width: 100%;
+    opacity: 0;
+}
+
+.main-header .journal:hover .dropdown-content {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.main-header .dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.main-header .dropdown-content a:hover {
+    background-color: var(--clrPrimary3);
+    color: var(--clrSecondary);
+}
+
+
+.main-header .btn-toggle-menu {
+    background-color: inherit;
+    border: 0;
+    cursor: pointer;
+}
+
+.main-header .btn-toggle-menu .hamburger-lines {
+    height: 26px;
+    width: 32px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-header .btn-toggle-menu .hamburger-lines .line {
+    height: 4px;
+    width: 100%;
+    background-color: aliceblue;
+    transition: 0.4s;
+}
+
+
+body.menu-open .btn-toggle-menu .hamburger-lines .line.line1 {
+    rotate: -45deg;
+    transform-origin: top right;
+}
+
+body.menu-open .btn-toggle-menu .hamburger-lines .line.line2 {
+    scale: 0;
+}
+
+body.menu-open .btn-toggle-menu .hamburger-lines .line.line3 {
+    rotate: 45deg;
+    transform-origin: bottom right;
+}

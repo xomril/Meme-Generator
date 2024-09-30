@@ -1,0 +1,6 @@
+.main-container {
+    border-left: 2px solid var(--clrPrimary-3);
+    border-right: 2px solid var(--clrPrimary-3);
+    padding-top: 80px;
+    display: grid;
+}

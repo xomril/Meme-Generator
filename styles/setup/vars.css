@@ -1,0 +1,32 @@
+:root {
+    /* PALLETE */
+
+    
+    --clrPrimary7: #ffffff;
+    --clrPrimary6:  rgb(126, 188, 175);
+    --clrPrimary5:  rgb(81, 188, 188);
+    --clrPrimary4:  rgb(85, 184, 170);
+    --clrPrimary3:  rgb(53, 130, 135);
+    --clrPrimary2:  rgb(38, 61, 69);
+    --clrPrimary1: rgb(31, 28, 46);
+
+
+    --layout-padding: 20px;
+
+
+    --clrSecondary: rgba(71, 126, 126, 0.9);
+    --clrSecondary1: #83CB9D;
+    --clrSecondary2: #ffffff;
+
+    --clrTertiary: #d7ee0c; 
+
+    /* layout */
+    --headerHeight: 100px;
+
+    /* mq */
+    --l: 1060px;
+    --m: 860px;
+    --s: 600px;
+
+
+}
